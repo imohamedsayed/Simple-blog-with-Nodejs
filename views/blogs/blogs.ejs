@@ -1,0 +1,18 @@
+<div class="row">
+  <% blogs.forEach(blog=>{ %>
+  <div class="col-lg-4 col-md-6 col-12 mb-4">
+    <div class="blog-box">
+      <div class="blog-title bg-dark p-2">
+        <a href="/blog/<%= blog._id %>" class="text-light blog-title"
+          ><%= blog.title %></a
+        >
+      </div>
+      <div class="blog-body p-2">
+        <span class="text-info"><%= blog.snippet%></span>
+        <hr />
+        <p class="text-muted mt-2"><%= blog.body%></p>
+      </div>
+    </div>
+  </div>
+  <%}) %>
+</div>

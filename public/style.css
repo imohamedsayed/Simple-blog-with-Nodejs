@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;600;700&display=swap");
+
+body {
+  padding-bottom: 80px;
+  font-family: "Noto Serif", serif;
+}
+a {
+  cursor: pointer;
+}
+.breadcrumb {
+  background-color: #ececec;
+}
+.breadcrumb a {
+  text-decoration: none;
+  color: #222;
+}
+header a,
+.blog-title {
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+header a:hover,
+.blog-title:hover {
+  color: #1a8024 !important;
+}
+.blog-box {
+  border: 1px solid #777;
+  border-radius: 10px;
+}
+.blog-box .blog-title {
+  border-radius: 10px 10px 0 0;
+}
+.blog-box .blog-body {
+  min-height: 100px;
+}

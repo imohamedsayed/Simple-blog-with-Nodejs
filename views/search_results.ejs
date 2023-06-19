@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs')%>
+
+  <body>
+    <%- include('./partials/nav.ejs')%>
+    <div class="container mt-5">
+      <div class="home-title d-flex justify-content-between align-items-center">
+        <h3>Search Results</h3>
+      </div>
+      <hr class="mb-4" />
+      <% if(blogs.length > 0) {%> <%- include('./blogs/blogs.ejs')%> <% } else{
+      %>
+      <p class="alert alert-warning">no search results found</p>
+      <% } %>
+    </div>
+
+    <%- include('./partials/footer.ejs')%>
+
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

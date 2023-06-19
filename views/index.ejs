@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs')%>
+
+  <body>
+    <%- include('./partials/nav.ejs')%>
+    <nav aria-label="breadcrumb ">
+      <ol class="breadcrumb p-4 text-light">
+        <li class="breadcrumb-item active" aria-current="page">
+          <a href="/">Home</a>
+        </li>
+      </ol>
+    </nav>
+    <div class="container mt-5">
+      <div class="home-title d-flex justify-content-between align-items-center">
+        <h3>Our Blogs :</h3>
+        <form action="/search" method="post" class="d-flex">
+          <input
+            type="text"
+            name="search"
+            class="form-control me-1"
+            style="width: 220px"
+            placeholder="Search for a blog"
+          />
+          <button class="btn btn-dark" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </div>
+      <hr class="mb-4" />
+      <% if(blogs.length > 0) {%> <%- include('./blogs/blogs.ejs')%> <% } else{
+      %>
+      <p class="alert alert-info">There is no blogs added yet ..</p>
+      <% } %>
+    </div>
+
+    <%- include('./partials/footer.ejs')%>
+
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

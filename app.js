@@ -2,7 +2,8 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-
+const blogRouter = require("./routes/blogRoutes");
+const homeRouter = require("./routes/homeRouters");
 // Models
 
 const Blog = require("./models/blog");
@@ -60,70 +61,12 @@ app.use(morgan("dev"));
   ---- basic Routes
 */
 
-app.get("/", (req, res) => {
-  Blog.find()
-    .sort({ createdAt: -1 })
-    .then((results) => {
-      res.render("index", { title: "Home", blogs: results });
-    })
-    .catch((err) => console.log("Error while getting blogs: ", err));
-});
-
-// app.post("/search", (req, res) => {
-//   Blog.find({ title: req.body["search"] })
-//     .then((results) => {
-//       blogs = results;
-//       res.render("index", { title: "Home", blogs });
-//     })
-//     .catch((err) => console.log("Error while getting blogs: ", err));
-// });
+app.use(homeRouter);
 
 /* 
   ---- Blog Routes
 */
-
-app.get("/blog/create", (req, res) => {
-  res.render("create", { title: "Create Blog" });
-});
-
-// Single blogs
-app.get("/blog/:id", (req, res) => {
-  const id = req.params.id;
-
-  Blog.findById(id)
-    .then((results) => {
-      console.log(results);
-      res.render("blog_view", { title: "Blog Details", blog: results });
-    })
-    .catch((err) => console.log(err));
-});
-
-// delete a blog
-
-app.delete("/blog/:id", (req, res) => {
-  const id = req.params.id;
-  Blog.findByIdAndDelete(id)
-    .then((result) => {
-      // send res to browser (JSON data)
-      res.json({ redirect: "/" });
-    })
-    .catch((err) => console.log(err));
-});
-
-// create a blog document
-app.post("/blog/create", (req, res) => {
-  // console.log(req.body);
-  const blog = new Blog({
-    title: req.body.blog_title,
-    snippet: req.body.snippet,
-    body: req.body.body,
-  });
-  blog
-    .save()
-    .then(() => res.redirect("/"))
-    .catch((err) => res.send(err));
-});
-
+app.use(blogRouter);
 /* 
   ---- 404 - not found
 */
